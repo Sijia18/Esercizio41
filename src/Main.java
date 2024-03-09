@@ -8,21 +8,20 @@ public class Main {
         int number = 11;
         int minimum = 0;
         int maximum = 10;
-        if (isInRange(number, minimum, maximum)) {
-            System.out.println("The number is in range!");
+
+        try {
+            boolean result = isInRange(number, minimum, maximum); 
+            System.out.println("The number is in range!" + result);
+        } catch (ArithmeticException e) { 
+            System.out.println("Error: " + e.getMessage());
+            // getMessage() serve a nascondere la dicitura java.lang.ArithmeticException:
         }
     }
 
     public static boolean isInRange(int number, int minimum, int maximum) {
-        try {
-            if (number < minimum || number > maximum) {
-                throw new ArithmeticException("The number is out of bounds.\nTry with a number between 0 and 10!");
-            }
-            return true;
-        } catch (ArithmeticException e) {
-            System.out.println("Error: " + e.getMessage());
-            // getMessage() serve a nascondere la dicitura java.lang.ArithmeticException:
+        if (number < minimum || number > maximum) {
+            throw new ArithmeticException("The number is out of bounds.\nTry with a number between 0 and 10!");
         }
-        return false;
+        return true;
     }
 }
